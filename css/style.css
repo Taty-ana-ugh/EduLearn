@@ -1,0 +1,116 @@
+/* ===== GLOBAL STYLES ===== */
+:root {
+  --primary: #0d6efd;
+  --warning: #ffc107;
+  --dark: #212529;
+  --light-bg: #f8f9fa;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 1rem;
+  color: #333;
+  background-color: #fff;
+}
+
+/* ===== HERO SECTION ===== */
+.hero-section {
+  background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 60%, #084298 100%);
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+}
+
+/* ===== CATEGORY CARDS ===== */
+.category-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+.category-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.12) !important;
+}
+
+/* ===== COURSE CARDS ===== */
+.course-card {
+  transition: transform 0.3s ease;
+}
+.course-card:hover {
+  transform: translateY(-5px);
+}
+.course-card .badge-level {
+  font-size: 0.75rem;
+}
+
+/* ===== NAVBAR ===== */
+.navbar-brand {
+  font-size: 1.4rem;
+  letter-spacing: 0.5px;
+}
+
+/* ===== TEAM SECTION ===== */
+.team-img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border: 4px solid #0d6efd;
+}
+
+/* ===== FOOTER ===== */
+footer a:hover {
+  color: #ffc107 !important;
+}
+
+/* ===== DARK MODE ===== */
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+body.dark-mode .navbar {
+  background-color: #1a1a2e !important;
+}
+body.dark-mode .card {
+  background-color: #1e1e2f;
+  color: #e0e0e0;
+  border-color: #333;
+}
+body.dark-mode footer {
+  background-color: #0d0d0d !important;
+}
+body.dark-mode .bg-light {
+  background-color: #1a1a2e !important;
+}
+body.dark-mode .text-muted {
+  color: #aaa !important;
+}
+
+/* ===== SEARCH BAR ===== */
+#searchInput {
+  border-radius: 25px;
+  padding-left: 1.2rem;
+}
+
+/* ===== FORM STYLES ===== */
+.form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.2rem rgba(13,110,253,0.2);
+}
+.error-msg {
+  color: #dc3545;
+  font-size: 0.82rem;
+  margin-top: 2px;
+  display: none;
+}
+.error-msg.show {
+  display: block;
+}
+
+/* ===== RESPONSIVE FIXES ===== */
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: 50vh;
+  }
+  .hero-section h1 {
+    font-size: 2rem;
+  }
+}
