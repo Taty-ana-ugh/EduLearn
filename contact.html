@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduLearn — Contact</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html"><i class="bi bi-mortarboard-fill me-2"></i>EduLearn</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="courses.html">Courses</a></li>
+          <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+        </ul>
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link" href="signin.html">Sign In</a></li>
+          <li class="nav-item"><a class="btn btn-warning btn-sm ms-2" href="signup.html">Sign Up</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="bg-primary text-white text-center py-5">
+    <div class="container">
+      <h1 class="fw-bold">Contact Us</h1>
+      <p class="lead">We'd love to hear from you. Send us a message!</p>
+    </div>
+  </section>
+
+  <section class="py-5">
+    <div class="container">
+      <div class="row g-5">
+        <!-- CONTACT FORM -->
+        <div class="col-lg-7">
+          <h3 class="fw-bold mb-4">Send a Message</h3>
+          <form id="contactForm" novalidate>
+            <div class="mb-3">
+              <label for="fullName" class="form-label fw-semibold">Full Name</label>
+              <input type="text" class="form-control" id="fullName" placeholder="e.g. Jane Otieno">
+              <p class="error-msg" id="nameError">Please enter your full name (at least 3 characters).</p>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label fw-semibold">Email Address</label>
+              <input type="email" class="form-control" id="email" placeholder="you@example.com">
+              <p class="error-msg" id="emailError">Please enter a valid email address.</p>
+            </div>
+            <div class="mb-3">
+              <label for="subject" class="form-label fw-semibold">Subject</label>
+              <select class="form-select" id="subject">
+                <option value="">-- Select a subject --</option>
+                <option>General Inquiry</option>
+                <option>Course Support</option>
+                <option>Technical Issue</option>
+                <option>Partnership</option>
+                <option>Feedback</option>
+              </select>
+              <p class="error-msg" id="subjectError">Please select a subject.</p>
+            </div>
+            <div class="mb-3">
+              <label for="message" class="form-label fw-semibold">Message</label>
+              <textarea class="form-control" id="message" rows="5" placeholder="Type your message here..."></textarea>
+              <p class="error-msg" id="messageError">Message must be at least 20 characters.</p>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg w-100">
+              <i class="bi bi-send me-2"></i>Send Message
+            </button>
+            <div id="successAlert" class="alert alert-success mt-3 d-none">
+              <i class="bi bi-check-circle me-2"></i>Thank you! Your message has been sent successfully.
+            </div>
+          </form>
+        </div>
+
+        <!-- CONTACT INFO -->
+        <div class="col-lg-5">
+          <h3 class="fw-bold mb-4">Get in Touch</h3>
+          <div class="card border-0 shadow-sm p-4 mb-3">
+            <h6 class="fw-bold text-primary"><i class="bi bi-geo-alt me-2"></i>Nairobi Office (HQ)</h6>
+            <p class="mb-1">Westlands Business Park, Nairobi, Kenya</p>
+            <p class="mb-1"><i class="bi bi-envelope me-2 text-muted"></i>nairobi@edulearn.com</p>
+            <p class="mb-0"><i class="bi bi-telephone me-2 text-muted"></i>+254 700 111 222</p>
+          </div>
+          <div class="card border-0 shadow-sm p-4 mb-3">
+            <h6 class="fw-bold text-primary"><i class="bi bi-geo-alt me-2"></i>Mombasa Office</h6>
+            <p class="mb-1">Nyali Centre, Mombasa, Kenya</p>
+            <p class="mb-1"><i class="bi bi-envelope me-2 text-muted"></i>mombasa@edulearn.com</p>
+            <p class="mb-0"><i class="bi bi-telephone me-2 text-muted"></i>+254 700 333 444</p>
+          </div>
+          <div class="card border-0 shadow-sm p-4">
+            <h6 class="fw-bold text-primary"><i class="bi bi-clock me-2"></i>Working Hours</h6>
+            <p class="mb-1">Monday – Friday: 8:00 AM – 6:00 PM</p>
+            <p class="mb-0">Saturday: 9:00 AM – 1:00 PM</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-dark text-white py-4 mt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-3">
+          <h5 class="fw-bold"><i class="bi bi-mortarboard-fill me-2"></i>EduLearn</h5>
+          <p class="text-muted">Empowering learners worldwide with quality online education.</p>
+        </div>
+        <div class="col-md-4 mb-3">
+          <h6 class="fw-bold">Quick Links</h6>
+          <ul class="list-unstyled">
+            <li><a href="index.html" class="text-muted text-decoration-none">Home</a></li>
+            <li><a href="courses.html" class="text-muted text-decoration-none">Courses</a></li>
+            <li><a href="about.html" class="text-muted text-decoration-none">About</a></li>
+            <li><a href="contact.html" class="text-muted text-decoration-none">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4 mb-3">
+          <h6 class="fw-bold">Contact</h6>
+          <p class="text-muted mb-1"><i class="bi bi-envelope me-2"></i>info@edulearn.com</p>
+          <p class="text-muted mb-1"><i class="bi bi-telephone me-2"></i>+254 700 000 000</p>
+          <p class="text-muted"><i class="bi bi-geo-alt me-2"></i>Nairobi, Kenya</p>
+        </div>
+      </div>
+      <hr class="border-secondary">
+      <p class="text-center text-muted mb-0">&copy; 2026 EduLearn. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
