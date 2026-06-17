@@ -1,0 +1,153 @@
+/* ============================================================
+   EduLearn — main.js
+   Interactive features:
+   1. Contact form validation
+   2. Sign-up form validation
+   3. Course search/filter
+   4. Dark mode toggle
+============================================================ */
+
+// ── 1. CONTACT FORM VALIDATION ──────────────────────────────
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+  contactForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    let valid = true;
+
+    // Helper: show/hide error
+    function setError(id, show) {
+      const el = document.getElementById(id);
+      if (el) show ? el.classList.add('show') : el.classList.remove('show');
+    }
+
+    // Full Name
+    const name = document.getElementById('fullName').value.trim();
+    if (name.length < 3) { setError('nameError', true); valid = false; }
+    else { setError('nameError', false); }
+
+    // Email
+    const email = document.getElementById('email').value.trim();
+    const emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRx.test(email)) { setError('emailError', true); valid = false; }
+    else { setError('emailError', false); }
+
+    // Subject
+    const subject = document.getElementById('subject').value;
+    if (!subject) { setError('subjectError', true); valid = false; }
+    else { setError('subjectError', false); }
+
+    // Message
+    const message = document.getElementById('message').value.trim();
+    if (message.length < 20) { setError('messageError', true); valid = false; }
+    else { setError('messageError', false); }
+
+    if (valid) {
+      const alert = document.getElementById('successAlert');
+      if (alert) {
+        alert.classList.remove('d-none');
+        contactForm.reset();
+        setTimeout(() => alert.classList.add('d-none'), 5000);
+      }
+    }
+  });
+}
+
+// ── 2. SIGN-UP FORM VALIDATION ───────────────────────────────
+const signupForm = document.getElementById('signupForm');
+if (signupForm) {
+  signupForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    let valid = true;
+
+    function setError(id, show, msg) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (show) { el.textContent = msg; el.classList.add('show'); }
+      else { el.classList.remove('show'); }
+    }
+
+    // Name
+    const name = document.getElementById('regName').value.trim();
+    if (name.length < 3) {
+      setError('regNameError', true, 'Name must be at least 3 characters.'); valid = false;
+    } else { setError('regNameError', false); }
+
+    // Email
+    const email = document.getElementById('regEmail').value.trim();
+    const emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRx.test(email)) {
+      setError('regEmailError', true, 'Please enter a valid email.'); valid = false;
+    } else { setError('regEmailError', false); }
+
+    // Password
+    const pwd = document.getElementById('regPassword').value;
+    const pwdRx = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
+    if (!pwdRx.test(pwd)) {
+      setError('regPwdError', true, 'Password: 8+ chars, uppercase, lowercase, number, special char.'); valid = false;
+    } else { setError('regPwdError', false); }
+
+    // Confirm Password
+    const cpwd = document.getElementById('regConfirm').value;
+    if (cpwd !== pwd) {
+      setError('regConfirmError', true, 'Passwords do not match.'); valid = false;
+    } else { setError('regConfirmError', false); }
+
+    if (valid) {
+      const succ = document.getElementById('signupSuccess');
+      if (succ) {
+        succ.classList.remove('d-none');
+        signupForm.reset();
+      }
+    }
+  });
+}
+
+// ── 3. COURSE SEARCH / FILTER ────────────────────────────────
+const searchInput = document.getElementById('searchInput');
+if (searchInput) {
+  searchInput.addEventListener('input', function () {
+    const query = this.value.toLowerCase();
+    const cards = document.querySelectorAll('.course-item');
+    cards.forEach(card => {
+      const title = card.getAttribute('data-title') || '';
+      const category = card.getAttribute('data-category') || '';
+      const match = title.includes(query) || category.includes(query);
+      card.style.display = match ? '' : 'none';
+    });
+  });
+}
+
+// Category filter buttons
+const filterBtns = document.querySelectorAll('.filter-btn');
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', function () {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    const filter = this.getAttribute('data-filter');
+    const cards = document.querySelectorAll('.course-item');
+    cards.forEach(card => {
+      if (filter === 'all' || card.getAttribute('data-category') === filter) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+});
+
+// ── 4. DARK MODE TOGGLE ──────────────────────────────────────
+const darkToggle = document.getElementById('darkToggle');
+if (darkToggle) {
+  // Load saved preference
+  if (localStorage.getItem('theme') === 'dark') {
+    document.body.classList.add('dark-mode');
+    darkToggle.innerHTML = '<i class="bi bi-sun-fill"></i>';
+  }
+
+  darkToggle.addEventListener('click', function () {
+    document.body.classList.toggle('dark-mode');
+    const isDark = document.body.classList.contains('dark-mode');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    this.innerHTML = isDark ? '<i class="bi bi-sun-fill"></i>' : '<i class="bi bi-moon-fill"></i>';
+  });
+}
