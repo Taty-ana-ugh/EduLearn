@@ -106,14 +106,22 @@ if (signupForm) {
 const searchInput = document.getElementById('searchInput');
 if (searchInput) {
   searchInput.addEventListener('input', function () {
-    const query = this.value.toLowerCase();
+    const query = this.value.toLowerCase().trim();
     const cards = document.querySelectorAll('.course-item');
+    const noResults = document.getElementById('noResults');
+    let visibleCount = 0;
+
     cards.forEach(card => {
       const title = card.getAttribute('data-title') || '';
       const category = card.getAttribute('data-category') || '';
       const match = title.includes(query) || category.includes(query);
       card.style.display = match ? '' : 'none';
+      if (match) visibleCount++;
     });
+
+    if (noResults) {
+      noResults.classList.toggle('d-none', visibleCount > 0);
+    }
   });
 }
 
