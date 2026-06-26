@@ -10,36 +10,57 @@
 // ── 1. CONTACT FORM VALIDATION ──────────────────────────────
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
-  contactForm.addEventListener('submit', function (e) {
-    e.preventDefault();
-    let valid = true;
 
-    // Helper: show/hide error
-    function setError(id, show) {
-      const el = document.getElementById(id);
-      if (el) show ? el.classList.add('show') : el.classList.remove('show');
-    }
+  function setError(id, show) {
+    const el = document.getElementById(id);
+    if (el) show ? el.classList.add('show') : el.classList.remove('show');
+  }
 
-    // Full Name
+  function validateName() {
     const name = document.getElementById('fullName').value.trim();
-    if (name.length < 3) { setError('nameError', true); valid = false; }
-    else { setError('nameError', false); }
+    const ok = name.length >= 3;
+    setError('nameError', !ok);
+    return ok;
+  }
 
-    // Email
+  function validateEmail() {
     const email = document.getElementById('email').value.trim();
     const emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRx.test(email)) { setError('emailError', true); valid = false; }
-    else { setError('emailError', false); }
+    const ok = emailRx.test(email);
+    setError('emailError', !ok);
+    return ok;
+  }
 
-    // Subject
+  function validateSubject() {
     const subject = document.getElementById('subject').value;
-    if (!subject) { setError('subjectError', true); valid = false; }
-    else { setError('subjectError', false); }
+    const ok = subject !== '';
+    setError('subjectError', !ok);
+    return ok;
+  }
 
-    // Message
+  function validateMessage() {
     const message = document.getElementById('message').value.trim();
-    if (message.length < 20) { setError('messageError', true); valid = false; }
-    else { setError('messageError', false); }
+    const ok = message.length >= 20;
+    setError('messageError', !ok);
+    return ok;
+  }
+
+  // Live validation: clear/show errors as the user interacts
+  document.getElementById('fullName').addEventListener('blur', validateName);
+  document.getElementById('email').addEventListener('blur', validateEmail);
+  document.getElementById('subject').addEventListener('change', validateSubject);
+  document.getElementById('message').addEventListener('input', function () {
+    if (this.value.trim().length >= 20) setError('messageError', false);
+  });
+
+  contactForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const nameOk = validateName();
+    const emailOk = validateEmail();
+    const subjectOk = validateSubject();
+    const messageOk = validateMessage();
+    const valid = nameOk && emailOk && subjectOk && messageOk;
 
     if (valid) {
       const alert = document.getElementById('successAlert');
