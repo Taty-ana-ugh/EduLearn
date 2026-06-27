@@ -165,13 +165,22 @@ filterBtns.forEach(btn => {
     this.classList.add('active');
     const filter = this.getAttribute('data-filter');
     const cards = document.querySelectorAll('.course-item');
+    const noResults = document.getElementById('noResults');
+    let visibleCount = 0;
+
     cards.forEach(card => {
-      if (filter === 'all' || card.getAttribute('data-category') === filter) {
-        card.style.display = '';
-      } else {
-        card.style.display = 'none';
-      }
+      const match = filter === 'all' || card.getAttribute('data-category') === filter;
+      card.style.display = match ? '' : 'none';
+      if (match) visibleCount++;
     });
+
+    if (noResults) {
+      noResults.classList.toggle('d-none', visibleCount > 0);
+    }
+
+    // Clear search box when switching filters, for a predictable UX
+    const search = document.getElementById('searchInput');
+    if (search) search.value = '';
   });
 });
 
