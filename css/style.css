@@ -136,4 +136,14 @@ body.dark-mode hr {
   .hero-section h1 {
     font-size: 2rem;
   }
+  .filter-btn {
+    font-size: 0.85rem;
+  }
+}
+
+@media (min-width: 769px) {
+  .btn-md-normal {
+    font-size: 1rem;
+    padding: 0.375rem 0.75rem;
+  }
 }
