@@ -180,3 +180,17 @@ if (darkToggle) {
     this.innerHTML = isDark ? '<i class="bi bi-sun-fill"></i>' : '<i class="bi bi-moon-fill"></i>';
   });
 }
+
+// ── 5. AUTO-CLOSE MOBILE NAV ON LINK CLICK ───────────────────
+const navLinks = document.querySelectorAll('.navbar-nav .nav-link, .navbar-nav .btn');
+const navCollapse = document.querySelector('.navbar-collapse');
+if (navLinks.length && navCollapse) {
+  navLinks.forEach(link => {
+    link.addEventListener('click', function () {
+      if (navCollapse.classList.contains('show')) {
+        const bsCollapse = bootstrap.Collapse.getInstance(navCollapse) || new bootstrap.Collapse(navCollapse);
+        bsCollapse.hide();
+      }
+    });
+  });
+}
