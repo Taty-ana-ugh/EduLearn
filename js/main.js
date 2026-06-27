@@ -63,12 +63,21 @@ if (contactForm) {
     const valid = nameOk && emailOk && subjectOk && messageOk;
 
     if (valid) {
-      const alert = document.getElementById('successAlert');
-      if (alert) {
-        alert.classList.remove('d-none');
-        contactForm.reset();
-        setTimeout(() => alert.classList.add('d-none'), 5000);
-      }
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>Sending...';
+
+      setTimeout(() => {
+        const alert = document.getElementById('successAlert');
+        if (alert) {
+          alert.classList.remove('d-none');
+          contactForm.reset();
+          setTimeout(() => alert.classList.add('d-none'), 5000);
+        }
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+      }, 900);
     }
   });
 }
