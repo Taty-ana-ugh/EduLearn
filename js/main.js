@@ -112,7 +112,9 @@ if (signupForm) {
     // Password
     const pwd = document.getElementById('regPassword').value;
     const pwdRx = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*]).{8,}$/;
-    if (!pwdRx.test(pwd)) {
+    if (pwd.trim() !== pwd) {
+      setError('regPwdError', true, 'Password cannot start or end with a space.'); valid = false;
+    } else if (!pwdRx.test(pwd)) {
       setError('regPwdError', true, 'Password: 8+ chars, uppercase, lowercase, number, special char.'); valid = false;
     } else { setError('regPwdError', false); }
 
