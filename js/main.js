@@ -175,6 +175,18 @@ filterBtns.forEach(btn => {
   });
 });
 
+// ── AUTO-APPLY CATEGORY FILTER FROM URL (e.g. courses.html?category=web) ──
+if (filterBtns.length) {
+  const params = new URLSearchParams(window.location.search);
+  const categoryFromUrl = params.get('category');
+  if (categoryFromUrl) {
+    const targetBtn = document.querySelector(`.filter-btn[data-filter="${categoryFromUrl}"]`);
+    if (targetBtn) {
+      targetBtn.click();
+    }
+  }
+}
+
 // ── 4. DARK MODE TOGGLE ──────────────────────────────────────
 const darkToggle = document.getElementById('darkToggle');
 if (darkToggle) {
