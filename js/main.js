@@ -1,12 +1,3 @@
-/* ============================================================
-   EduLearn — main.js
-   Interactive features:
-   1. Contact form validation
-   2. Sign-up form validation
-   3. Course search/filter
-   4. Dark mode toggle
-============================================================ */
-
 // ── 1. CONTACT FORM VALIDATION ──────────────────────────────
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
@@ -212,5 +203,29 @@ if (navLinks.length && navCollapse) {
         bsCollapse.hide();
       }
     });
+  });
+}
+
+// ── SIGN IN FORM (SIMULATED) ─────────────────────────────────
+const signinForm = document.getElementById('signinForm');
+if (signinForm) {
+  signinForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const email = document.getElementById('siEmail').value.trim();
+    const password = document.getElementById('siPassword').value;
+    const emailRx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRx.test(email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+    if (password.length < 1) {
+      alert('Please enter your password.');
+      return;
+    }
+
+    // No real backend exists yet — simulate a successful login
+    window.location.href = 'index.html';
   });
 }
